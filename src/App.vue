@@ -1,16 +1,27 @@
 <template>
-  <app-btn
-    v-for="(category, ind) in allCategories"
-    :key="category"
-    :category="category"
-    @click="activCategory(ind)"
-  > {{category}} </app-btn>
-  <h3> {{goodsInCategory}} </h3>
-  <button @click="requestCategory">Test</button>
+<div class="flex">
+  <div class="left">
+    <app-btn
+      v-for="(category, ind) in allCategories"
+      :key="category"
+      :category="category"
+      @click="activCategory(ind)"
+    > {{category}} </app-btn>
+    <button @click="requestCategory">Test</button>
+  </div>
+  <div class="right">
+    <app-goods
+      v-for="good in goodsInCategory"
+      :key="good.id"
+      :good-obj="good"
+    ></app-goods>
+  </div>
+</div>
 </template>
 
 <script>
 import AppBtn from "./components/AppBtn.vue"
+import AppGoods from './components/AppGoods.vue'; 
 
 export default {
   name: 'App',
@@ -45,7 +56,7 @@ export default {
    beforeMount() {
     this.requestCategories() 
   },
-  components: {AppBtn,}
+  components: {AppBtn, AppGoods,}
 }
 </script>
 
